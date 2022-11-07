@@ -1,0 +1,29 @@
+{
+    "name": "alitcha/kumaa",
+    "autoload": {
+        "psr-4": {
+            "Kumaa\\Framework\\": "src/Framework/",
+            "Kumaa\\Modules\\" : "src/Modules"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tiffane",
+            "email": "zohoungbogboanlyou@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "*",
+        "robmorgan/phinx": "^0.13.1",
+        "fakerphp/faker": "^1.20"
+    },
+    "require": {
+        "guzzlehttp/psr7": "^2.4",
+        "http-interop/response-sender": "^1.0",
+        "mezzio/mezzio-laminasrouter": "^3.7",
+        "aura/router": "^3.2",
+        "vlucas/phpdotenv": "^5.5",
+        "php-di/php-di": "^6.4"
+    }
+}
