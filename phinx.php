@@ -1,10 +1,12 @@
 <?php
 
 $migration = [
+    \Kumaa\Modules\Commentaire\Commentaire::MIGRATION,
     \Kumaa\Modules\Article\Article::MIGRATION
 ];
 
 $seed = [
+    \Kumaa\Modules\Commentaire\Commentaire::SEED,
     \Kumaa\Modules\Article\Article::SEED
 ];
 

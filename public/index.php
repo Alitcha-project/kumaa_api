@@ -17,7 +17,8 @@ $builder->addDefinitions(dirname(__DIR__).'/configs/config.php');
 $container = $builder->build();
 
 $modules = [
-    \Kumaa\Modules\Article\Article::class
+    \Kumaa\Modules\Article\Article::class,
+    \Kumaa\Modules\Commentaire\Commentaire::class
 ];
 
 $app = new App($container, $modules);

@@ -20,3 +20,13 @@ CREATE TABLE public."Article" (
 	date_edit_article date NOT NULL,
 	CONSTRAINT "Article_pk" PRIMARY KEY (id_article)
 );
+
+CREATE TABLE public."Commentaire" (
+  id_commentaire smallserial NOT NULL,
+  text_commentaire text NOT NULL,
+  date_post_commentaire date NOT NULL,
+  date_edit_commentaire date NOT NULL,
+  article_id_commentaire integer NOT NULL,
+  CONSTRAINT "Commentaire_pk" PRIMARY KEY (id_commentaire),
+  CONSTRAINT "Commentaire_article_fk" FOREIGN KEY (article_id_commentaire)REFERENCES Article(id_article)
+);
