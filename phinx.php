@@ -1,11 +1,15 @@
 <?php
 
 $migration = [
-    \Kumaa\Modules\Article\Article::MIGRATION
+    \Kumaa\Modules\Article\Article::MIGRATION,
+    \Kumaa\Modules\Comment\Comment::MIGRATION,
+    \Kumaa\Modules\Discussion\Discussion::MIGRATION
 ];
 
 $seed = [
-    \Kumaa\Modules\Article\Article::SEED
+    \Kumaa\Modules\Article\Article::SEED,
+    \Kumaa\Modules\Comment\Comment::SEED,
+    \Kumaa\Modules\Comment\Discussion::SEED
 ];
 
 
