@@ -4,9 +4,9 @@ use Phinx\Seed\AbstractSeed;
 use Faker\Factory;
 
 /**
- * AddCommentaire
+ * AddCommentaireEssaie
  */
-class AddCommentaire extends AbstractSeed
+class AddCommentaireEssaie extends AbstractSeed
 {
     /**
      * Run Method.

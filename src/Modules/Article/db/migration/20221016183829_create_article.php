@@ -19,11 +19,12 @@ final class CreateArticle extends AbstractMigration
      */
     public function change()
     {
-        $articles = $this->table('articles');
-        $articles->addColumn("title_article", "string");
-        $articles->addColumn("text_article", "text", ["limit" => MysqlAdapter::TEXT_LONG]);
-        $articles->addColumn("date_post_article", "datetime");
-        $articles->addColumn("date_edit_article", "datetime");
-        $articles->create();
+//        $articles = $this->table('articles');
+//        $articles->addColumn("title_article", "string");
+//        $articles->addColumn("text_article", "text", ["limit" => MysqlAdapter::TEXT_LONG]);
+//        $articles->addColumn("date_post_article", "datetime");
+//        $articles->addColumn("date_edit_article", "datetime");
+//        $articles->create();
+
     }
 }
