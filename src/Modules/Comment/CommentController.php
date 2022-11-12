@@ -5,7 +5,7 @@ namespace Kumaa\Modules\Comment;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\ServerRequest;
 
-class ArticleController
+class CommentController
 {
     private $pdo = null;
 
