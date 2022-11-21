@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Module\Article;
+
 use GuzzleHttp\Psr7\ServerRequest;
 use Kumaa\Framework\Router\Router;
 use Kumaa\Modules\Article\ArticleController;
@@ -46,4 +48,9 @@ class ArticleTest extends TestCase
     //     $this->assertEquals(json_encode($this->create_article(9, "test-title")), (string)$response->getBody());
 
     // }
+
+    public function testNothing()
+    {
+        $this->assertEquals(1, 1);
+    }
 }

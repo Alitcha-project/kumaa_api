@@ -32,11 +32,12 @@ class ArticleController
     {
         $article = $this->article->getArticleById($request->getAttribute('id'));
 
-        if ($article["title_article"] !== $request->getAttribute("slug"))
+        if ($article["title_article"] !== $request->getAttribute("slug")) {
             return $this->redirect("getOneArticle", [
                 "slug" => $article["title_article"],
                 "id" => $request->getAttribute("id")
             ]);
+        }
 
         return new Response(200, [], json_encode($article));
     }

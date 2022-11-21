@@ -1,7 +1,8 @@
 <?php
 namespace Kumaa\Modules\Article;
 
-class ArticleModel {
+class ArticleModel
+{
 
     private $pdo;
 
@@ -29,4 +30,10 @@ class ArticleModel {
         return $article;
     }
 
+    public function insertArticle(string $title, string $text): bool
+    {
+        $query = $this->pdo->prepare("INSERT INTO `articles` VALUES(?, ?, NOW(), NOW()");
+
+        return $query->execute([$title, $text]);
+    }
 }
