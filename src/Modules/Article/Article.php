@@ -20,6 +20,7 @@ class Article extends Module
     {
         parent::__construct($router);
 
-        $this->router->addRoute("/article", [$container->get(ArticleController::class), "get"], "getAllArticle", "GET");
+        $this->router->addRoute("/article", [$container->get(ArticleController::class), "getAllArticle"], "getAllArticle", "GET");
+        $this->router->addRoute("/article/{slug}-{id}", [$container->get(ArticleController::class), "getArticleByIdAndSlug"], "getOneArticle", "GET");
     }
 }

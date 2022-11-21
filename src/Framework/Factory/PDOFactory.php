@@ -7,7 +7,6 @@ use Psr\Container\ContainerInterface;
 
 class PDOFactory
 {
-    
     /**
      * __invoke
      *

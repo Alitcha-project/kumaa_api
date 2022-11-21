@@ -42,7 +42,7 @@ class App
             $this->modules[] =  $container->get($module);
         }
     }
-        
+
     /**
      * run
      *
@@ -52,22 +52,21 @@ class App
     public function run(ServerRequestInterface $request): ResponseInterface
     {
         $uri = $request->getUri()->getPath();
-        $response = null;
+        $response = new Response(404, [], "No route match");
 
         if (!empty($uri) && $uri[-1] === "/") {
             $response = new Response(301);
             $response = $response->withHeader("Location", substr($uri, 0, -1));
             return $response;
         }
-        
+
         $route = $this->container->get(Router::class)->matchRoute($request);
 
         if ($route) {
             $attribute = $route->getParams();
             foreach ($attribute as $key => $value) {
-                $request->withAttribute($key, $value);
+                $request = $request->withAttribute($key, $value);
             }
-
             $response = call_user_func_array($route->getCallback(), [$request]);
         }
 

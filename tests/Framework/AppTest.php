@@ -18,7 +18,7 @@ class AppTest extends TestCase
         $this->assertEquals(301, $response->getStatusCode());
         $this->assertContains("/articles", $response->getHeader("Location"));
     }
-    
+
     public function testNoRedirectSlash()
     {
         $server = new ServerRequest("GET", "/articles");

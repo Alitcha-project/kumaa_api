@@ -26,7 +26,7 @@ class AddArticle extends AbstractSeed
 
         for ($i=0; $i < 100; $i++) {
             $data[] = [
-                "title_article" => $faker->sentence(),
+                "title_article" => substr($faker->sentence(), 0, -1),
                 "text_article" => $faker->text(),
                 "date_post_article" => date('Y-m-d H:i:s', $date),
                 "date_edit_article" => date('Y-m-d H:i:s', $date),

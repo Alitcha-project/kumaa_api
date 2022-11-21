@@ -22,7 +22,7 @@ class RouterTest extends TestCase
         $request = new ServerRequest("GET", "/articles");
         $this->router->addRoute("/articles", function () {
             return "Hello";
-        }, "articles");
+        }, "articles", "GET");
 
         $route = $this->router->matchRoute($request);
 
@@ -36,7 +36,7 @@ class RouterTest extends TestCase
         $request = new ServerRequest("GET", "/vlog");
         $this->router->addRoute("/articles", function () {
             return "Hello";
-        }, "articles");
+        }, "articles", "GET");
 
         $route = $this->router->matchRoute($request);
 
@@ -49,25 +49,26 @@ class RouterTest extends TestCase
         $request = new ServerRequest("GET", "/articles/mon-article-17");
         $this->router->addRoute("/articles", function () {
             return "Hello";
-        }, "articles");
+        }, "articles", "GET");
         $this->router->addRoute("/articles/{slug}-{id}", function () {
             return "Hello.params";
-        }, "articles.withparams");
+        }, "articles.withparams", "GET");
 
         $route = $this->router->matchRoute($request);
 
         $this->assertEquals("articles.withparams", $route->getName());
         $this->assertEquals("Hello.params", call_user_func($route->getCallback(), [$request]));
+        $this->assertEquals(["slug" => "mon-article", "id" => "17"], $route->getParams());
     }
 
     public function testGenerateUrl()
     {
-        $this->router->addRoute("/articles/{slug}-{id}", function () {
-            return "Hello.params";
-        }, "articles.withparams");
+            $this->router->addRoute("/articles/{slug}-{id}", function () {
+                return "Hello.params";
+            }, "articles.withparams", "GET");
 
         $uri = $this->router->generateUrl("articles.withparams", ["slug" => "mon-article", "id" => "18"]);
-    
+
         $this->assertEquals("/articles/mon-article-18", $uri);
     }
 }
