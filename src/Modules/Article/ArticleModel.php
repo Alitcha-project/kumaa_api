@@ -20,14 +20,14 @@ class ArticleModel
         return $result;
     }
 
-    public function getArticleById(int $id): array
+    public function getArticleById(int $id): ?array
     {
         $query = $this->pdo->prepare("SELECT * FROM `articles` WHERE `id` = ?");
         $query->execute([$id]);
 
         $article = $query->fetch();
 
-        return $article;
+        return is_array($article) ? $article : null;
     }
 
     public function insertArticle(string $title, string $text): bool

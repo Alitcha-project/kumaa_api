@@ -70,21 +70,53 @@ class ValidatorTest extends TestCase
 
     public function testLength()
     {
-        $errors = (new Validator([
+        $this->assertCount(0, (new Validator([
             'test' => '123456',
-        ]))
-        ->length('test', 1, 8)
-        ->length('test', 0)
-        ->length('test', 5, 8)
-        ->length('test', null, 5)
-        ->length('test', 4, null)
-        ->length('test', 9, 10)
-        ->length('test', 0, 2)
-        ->length('test', null, null)
-        ->length('test', 10)
-        ->length('test', 0)
-        ->getErrors();
+        ]))->length('test', 1, 8)->getErrors());
+        $this->assertCount(0, (new Validator([
+            'test' => '123456',
+        ]))->length('test', 0)->getErrors());
+        $this->assertCount(0, (new Validator([
+            'test' => '123456',
+        ]))->length('test', 5, 8)->getErrors());
+        $this->assertCount(1, (new Validator([
+            'test' => '123456',
+        ]))->length('test', null, 5)->getErrors());
+        $this->assertCount(0, (new Validator([
+            'test' => '123456',
+        ]))->length('test', 4, null)->getErrors());
+        $this->assertCount(1, (new Validator([
+            'test' => '123456',
+        ]))->length('test', 9, 10)->getErrors());
+        $this->assertCount(1, (new Validator([
+            'test' => '123456',
+        ]))->length('test', 0, 2)->getErrors());
+        $this->assertCount(0, (new Validator([
+            'test' => '123456',
+        ]))->length('test', null, null)->getErrors());
+        $this->assertCount(1, (new Validator([
+            'test' => '123456',
+        ]))->length('test', 10)->getErrors());
+        $this->assertCount(0, (new Validator([
+            'test' => '123456',
+        ]))->length('test', 0)->getErrors());
+    }
 
-        $this->assertCount(4, $errors);
+    public function testDate()
+    {
+        $error = (new Validator(['date'=>'2018-04-01']))->dateTime('date')->getErrors();
+        $this->assertCount(0, $error);
+
+        $error = (new Validator(['date' => '2020-34-32']))->dateTime('date')->getErrors();
+        $this->assertCount(1, $error);
+
+        $error = (new Validator(['date' => '2010-12-12 00:23:56']))->dateTime('date', 'h:i:s d:m:Y')->getErrors();
+        $this->assertCount(1, $error);
+
+        $error = (new Validator(['date' => '2010-12-12 00:23:56']))->dateTime('date')->getErrors();
+        $this->assertCount(0, $error);
+
+        $error = (new Validator(['date' => '2010-12-12 25:23:56']))->dateTime('date')->getErrors();
+        $this->assertCount(1, $error);
     }
 }
