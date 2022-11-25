@@ -12,6 +12,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\NullOutput;
+
 // use Tests\DBTestCase;
 
 
@@ -64,13 +65,44 @@ class ArticleTableTest extends DBTestCase
         $count = (int)$this->pdo->exec('SELECT COUNT(id) FROM `articles`');
         $this->assertEquals(100, $count);
 
-        $data = $this->table->getArticleById(1);
+        $data = $this->table->get(1);
         $this->assertIsArray($data);
+        $this->assertNotEquals(0, count($data));
+        $this->assertArrayHasKey('id', $data[0]);
     }
 
     public function testNotFind()
     {
-        $data = $this->table->getArticleById(10000);
-        $this->assertNull($data);
+        $data = $this->table->get(10000);
+        $this->assertIsArray($data);
+        $this->assertEquals([], $data);
     }
+
+    public function testCreateArticle()
+    {
+        $data = $this->table->insert(['title_article' => "Test", 'text_article' => 'Bonjour tout le monde']);
+        $this->assertEquals(true, $data);
+    }
+
+    public function testUpdateArticle()
+    {
+        $before = $this->table->get(1);
+        $data = $this->table->update(1, ['title_article' => "Test"]);
+        $after = $this->table->get(1);
+        $this->assertTrue($data);
+        $this->assertNotEquals($before, $after);
+        $this->assertEquals("Test", $after[0]['title_article']);
+    }
+
+    public function testDeleteArticle()
+    {
+        $this->table->delete(1);
+        $this->assertEquals([], $this->table->get(1));
+    }
+
+    // public function testCreateArticleFail()
+    // {
+    //     $data = $this->table->insert([]);
+    //     $this->assertEquals(false, $data);
+    // }
 }
