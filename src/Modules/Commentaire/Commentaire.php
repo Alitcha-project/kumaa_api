@@ -39,9 +39,9 @@ class Commentaire extends Module
         );
 
         $this->router->addRoute(
-            "/commentaire/{article}-{id}",
-            [$container->get(CommentaireController::class), "getAllCommentaireByArticle"],
-            "getAllCommentaireByArticle",
+            "/commentaire/{id}/article",
+            [$container->get(CommentaireController::class), "getAllByArticle"],
+            "getAllByArticle",
             "GET"
         );
     }

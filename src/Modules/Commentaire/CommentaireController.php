@@ -8,6 +8,7 @@ use Kumaa\Framework\Router\Router;
 
 class CommentaireController
 {
+    private $article = null;
     private $commentaire = null;
     private $pdo = null;
     private $router = null;
@@ -16,6 +17,7 @@ class CommentaireController
 
     public function __construct(CommentaireModel $commentaire, Router $router)
     {
+        $this->article = $article;
         $this->commentaire = $commentaire;
         $this->router = $router;
     }
@@ -38,15 +40,13 @@ class CommentaireController
     //GETBYARTICLE
     public function getAllCommentaireByArticle(ServerRequest $request): Response
     {
-        $commentaire = $this->commentaire->getById($request->getAttribute('id'));
+        $commentaires = $this->commentaire->getAllByArticle($request->getAttribute('id'));
+        $article = $this->article->getArticleById($request->getAttribute('id'));
+        $result = [
+            "commentaires" => $commentaires,
+            "article" => $article,
+        ];
 
-        if ($commentaire!= null) {
-            return $this->redirect("getOneCommentaire", [
-                "slug" => $commentaire["text_commentaire"],
-                "id" => $request->getAttribute("id")
-            ]);
-        }
-
-        return new Response(200, [], json_encode($commentaire));
+        return new Response(200, [], json_encode($result));
     }
 }
