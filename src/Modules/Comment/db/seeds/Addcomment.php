@@ -6,7 +6,7 @@ use Faker\Factory;
 /**
  * AddArticle
  */
-class AddDiscussion extends AbstractSeed
+class AddComment extends AbstractSeed
 {
     /**
      * Run Method.
@@ -26,28 +26,15 @@ class AddDiscussion extends AbstractSeed
 
         for ($i=0; $i < 100; $i++) {
             $data[] = [
-                "text_discussion" => $faker->text(),
-                "reply_to_discussion" => $faker->numerify(),
-                "id_user_User" => $faker->numerify(),
-                "id_comment_Categorie" => $faker->numerify(),
-                "date_post_discussion" => date('Y-m-d H:i:s', $date),
-                "date_edit_discussion" => date('Y-m-d H:i:s', $date),
+                "content" => $faker->text(),
+                "id_user_User1" => $faker->numerify(),
+                "id_article_Article" => $faker->numerify(),
+                "date_post_comment" => date('Y-m-d H:i:s', $date),
+                "date_edit_comment" => date('Y-m-d H:i:s', $date),
             ];
         }
 
-
-        /*CREATE TABLE public."Discussion" (
-            id_discussion smallint NOT NULL,
-            text_discussion varchar NOT NULL,
-            date_post_discussion date NOT NULL,
-            date_edit_discussion date NOT NULL,
-            "id_user_User" smallint NOT NULL,
-            reply_to_discussion smallint,
-            "id_comment_Categorie" smallint,
-            CONSTRAINT "Article_pk" PRIMARY KEY (id_discussion)
-        );*/
-
-        $this->table('discussions')
+        $this->table('comments')
             ->insert($data)
             ->saveData();
     }

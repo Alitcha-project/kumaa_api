@@ -8,6 +8,7 @@ use Kumaa\Framework\Router\Router;
 use Kumaa\Modules\Module;
 use PDO;
 use Psr\Container\ContainerInterface;
+require('DiscussionController.php');
 
 
 class Discussion extends Module
@@ -19,6 +20,7 @@ class Discussion extends Module
     {
         parent::__construct($router);
 
-        $this->router->addRoute("/discussion", [$container->get(DiscussionController::class), "getAllComment"], "getAllComment", "GET");
+        $this->router->addRoute("/discussion/all", [$container->get(DiscussionController::class), "getAllDiscussions"], "getAllDiscussions", "GET");
+        $this->router->addRoute("/discussion/{id}/show", [$container->get(DiscussionController::class), "getDiscussionById"], "getDiscussionById", "GET");
     }
 }

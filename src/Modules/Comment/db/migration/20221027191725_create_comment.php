@@ -21,7 +21,6 @@ final class CreateComment extends AbstractMigration
         $comment = $this->table('comment');
         $comment->addColumn("content", "string");
         $comment->addColumn("id_user_User", "integer");
-        $comment->addColumn("id_user_User", "integer");
         $comment->addColumn("date_post_comment", "datetime");
         $comment->addColumn("date_edit_comment", "datetime");
         $comment->create();

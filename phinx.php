@@ -9,7 +9,7 @@ $migration = [
 $seed = [
     \Kumaa\Modules\Article\Article::SEED,
     \Kumaa\Modules\Comment\Comment::SEED,
-    \Kumaa\Modules\Comment\Discussion::SEED,
+    \Kumaa\Modules\Discussion\Discussion::SEED,
 ];
 
 
