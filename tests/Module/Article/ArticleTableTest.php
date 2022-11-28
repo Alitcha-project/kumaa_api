@@ -1,22 +1,35 @@
 <?php
-
 namespace Tests\Module\Article;
 
-use Kumaa\Modules\Article\ArticleModel;
 use PDO;
 use Phinx\Config\Config;
-use Phinx\Console\PhinxApplication;
+// use Tests\DatabaseTestCase;
 use Phinx\Migration\Manager;
-use phpDocumentor\Reflection\Types\Array_;
 use PHPUnit\Framework\TestCase;
+use Phinx\Console\PhinxApplication;
+// use Tests\Database\DatabaseTestCase;
+use Kumaa\Modules\Article\ArticleModel;
+use phpDocumentor\Reflection\Types\Array_;
 use Symfony\Component\Console\Input\StringInput;
-use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\Console\Output\ConsoleOutput;
+
+// use Tests\DatabaseTestCase;
 
 // use Tests\DBTestCase;
 
 
-class DBTestCase extends TestCase
+// class DBTestCase extends TestCase
+// {
+//     protected $pdo;
+
+//     public function setUp(): void
+//     {
+//         $pdo = new PDO('sqlite::memory:', null, null, [
+//             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+//             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+//         ]);
+class DatabaseTestCase extends TestCase
 {
     protected $pdo;
 
@@ -42,10 +55,24 @@ class DBTestCase extends TestCase
     }
 }
 
+//         $array_config = require('phinx.php');
+//         $array_config['environments']['testing'] = [
+//             'adapter' => 'sqlite',
+//             'connection' => $pdo
+//         ];
 
-class ArticleTableTest extends DBTestCase
+//         $config = new Config($array_config);
+//         $manager = new Manager($config, new StringInput(''), new NullOutput());
+//         $manager->migrate('testing');
+//         $manager->seed('testing');
+
+//         $this->pdo = $pdo;
+//     }
+// }
+
+
+class ArticleTableTest extends DatabaseTestCase
 {
-        
     /**
      * table
      *

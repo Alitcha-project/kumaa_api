@@ -3,7 +3,9 @@
     "autoload": {
         "psr-4": {
             "Kumaa\\Framework\\": "src/Framework/",
-            "Kumaa\\Modules\\" : "src/Modules"
+            "Kumaa\\Modules\\" : "src/Modules/",
+            "Kumaa\\Database\\" : "src/Database/",
+            "Tests\\" : "tests/"
         }
     },
     "authors": [

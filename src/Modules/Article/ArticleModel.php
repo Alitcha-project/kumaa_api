@@ -1,9 +1,12 @@
 <?php
 namespace Kumaa\Modules\Article;
 
-use Kumaa\Modules\Table;
 use PDO;
+use Kumaa\Database\Table;
 
+/**
+ * ArticleModel
+ */
 class ArticleModel extends Table
 {
     public function __construct(PDO $pdo)

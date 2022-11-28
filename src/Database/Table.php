@@ -1,6 +1,8 @@
 <?php
 
-namespace Kumaa\Modules;
+namespace Kumaa\Database;
+
+use PHPUnit\Framework\Constraint\ArrayHasKey;
 
 class Table
 {
@@ -14,6 +16,11 @@ class Table
         $this->pdo = $pdo;
     }
 
+    public function getPdo()
+    {
+        return $this->pdo;
+    }
+
     public function get(int $id): array
     {
         $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ?';
@@ -22,6 +29,11 @@ class Table
         $data = $prepare->fetchAll();
 
         return $data ?? [];
+    }
+
+    public function selectquery(): string
+    {
+        return 'SELECT * FROM ' . $this->table . ' WHERE id = ?';
     }
 
     public function getAll(): array
@@ -56,10 +68,19 @@ class Table
     public function update(int $id, array $fields)
     {
         $sub_query = join(', ', array_map(function ($field) {
-            return $field . ' = :' . $field;
+            if ($field != 'id') {
+                return $field . ' = :' . $field;
+            } else {
+                return $field . ' = :myid';
+            }
         }, array_keys($fields)));
+
         $query = 'UPDATE ' . $this->table . ' SET ' . $sub_query . ' WHERE id = :id';
+
         $prepare = $this->pdo->prepare($query);
+        if (key_exists('id', $fields)) {
+            $fields['myid'] = $fields['id'];
+        }
         return $prepare->execute(array_merge($fields, ['id' => $id]));
     }
 }

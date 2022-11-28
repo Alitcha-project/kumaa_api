@@ -23,14 +23,14 @@ class ArticleController
 
     public function getAllArticle(ServerRequest $request): Response
     {
-        $result = $this->article->getArticle();
+        $result = $this->article->getAll();
 
         return new Response(200, [], json_encode($result));
     }
 
     public function getArticleByIdAndSlug(ServerRequest $request): Response
     {
-        $article = $this->article->getArticleById($request->getAttribute('id'));
+        $article = $this->article->get($request->getAttribute('id'));
 
         if ($article["title_article"] !== $request->getAttribute("slug")) {
             return $this->redirect("getOneArticle", [
