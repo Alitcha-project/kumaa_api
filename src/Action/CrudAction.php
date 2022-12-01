@@ -12,15 +12,15 @@ class CrudAction
     protected $model = null;
     protected $field_allow = [];
 
-    public function action_get(ServerRequest $request): Response
+    public function actionGet(ServerRequest $request): Response
     {
         $response = new Response(200);
         $id = $request->getAttribute('id', null);
 
         $data = $id !== null ?
-        $this->model->get($id)
-        :
-        $data = $this->model->getAll();
+            $this->model->get($id)
+            :
+            $data = $this->model->getAll();
 
         $body = $response->getBody();
         $body->write(json_encode($data));
@@ -29,19 +29,19 @@ class CrudAction
         return $response;
     }
 
-    public function action_delete(ServerRequest $request): Response
+    public function actionDelete(ServerRequest $request): Response
     {
         $response = new Response(200);
         $id = $request->getAttribute('id', null);
 
         $body = $response->getBody();
 
-        if ($this->check_exist($id)) {
+        if ($this->checkExists($id)) {
             $test = $this->model->delete($id);
             if ($test == true) {
-                $body->write(json_encode(["message"=>"delete success"]));
+                $body->write(json_encode(["message" => "delete success"]));
             } else {
-                $body->write(json_encode(["message"=>"delete error"]));
+                $body->write(json_encode(["message" => "delete error"]));
             }
         }
 
@@ -50,19 +50,19 @@ class CrudAction
         return $response;
     }
 
-    public function action_update(ServerRequest $request): Response
+    public function actionUpdate(ServerRequest $request): Response
     {
         $response = new Response(200);
         $id = $request->getAttribute('id', null);
 
         $body = $response->getBody();
 
-        if ($this->check_exist($id)) {
+        if ($this->checkExists($id)) {
             $test = $this->model->update((int)$id, $this->getParams($request));
             if ($test == true) {
-                $body->write(json_encode(["message"=>"update success"]));
+                $body->write(json_encode(["message" => "update success"]));
             } else {
-                $body->write(json_encode(["message"=>"update error"]));
+                $body->write(json_encode(["message" => "update error"]));
             }
         }
 
@@ -71,13 +71,13 @@ class CrudAction
         return $response;
     }
 
-    private function check_exist($id): bool
+    private function checkExists($id): bool
     {
 
         $data = $id !== null ?
-        $this->model->get($id)
-        :
-        null;
+            $this->model->get($id)
+            :
+            null;
 
         if ($data === null || $data === []) {
             return false;

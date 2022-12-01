@@ -24,6 +24,5 @@ final class CreateComment extends AbstractMigration
         $comment->addColumn("date_post_comment", "datetime");
         $comment->addColumn("date_edit_comment", "datetime");
         $comment->create();
-
     }
 }

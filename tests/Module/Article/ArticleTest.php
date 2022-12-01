@@ -21,7 +21,7 @@ class ArticleTest extends TestCase
      */
     public $article_controller;
 
-    public function setUp():void
+    public function setUp(): void
     {
         $container = $this->createMock(Container::class);
         $article = $this->createMock(ArticleModel::class);
@@ -29,12 +29,11 @@ class ArticleTest extends TestCase
         $container->method('get')->willReturn($article);
 
         $this->article_controller = new ArticleController($container);
-
     }
 
     public function testGetAllArticle()
     {
-        $response = $this->article_controller->action_get(new ServerRequest(200, '/'));
+        $response = $this->article_controller->actionGet(new ServerRequest(200, '/'));
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatusCode());

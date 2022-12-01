@@ -27,12 +27,11 @@ final class CreateDiscussion extends AbstractMigration
                 "date_edit_discussion" => date('Y-m-d H:i:s', $date),
         */
         $discussion = $this->table('discussion');
-        $comment->addColumn("text_discussion", "string");
-        $comment->addColumn("id_user_User", "integer");
-        $comment->addColumn("id_comment_Categorie", "integer");
-        $comment->addColumn("date_post_discussion", "datetime");
-        $comment->addColumn("date_edit_discussion", "datetime");
-        $comment->create();
-
+        $discussion->addColumn("text_discussion", "string");
+        $discussion->addColumn("id_user_User", "integer");
+        // $discussion->addColumn("id_comment_Categorie", "integer"); ??? J'ai pas compris
+        $discussion->addColumn("date_post_discussion", "datetime");
+        $discussion->addColumn("date_edit_discussion", "datetime");
+        $discussion->create();
     }
 }

@@ -6,10 +6,8 @@ use Phinx\Config\Config;
 use Phinx\Migration\Manager;
 use PHPUnit\Framework\TestCase;
 use Kumaa\Modules\Article\ArticleModel;
-use phpDocumentor\Reflection\Types\Array_;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\NullOutput;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
 class DatabaseTestCase extends TestCase
 {

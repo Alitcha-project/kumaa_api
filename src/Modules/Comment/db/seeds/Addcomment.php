@@ -22,19 +22,18 @@ class AddComment extends AbstractSeed
 
         $faker = Factory::create("fr_FR");
         $date = $faker->unixTime('now');
-        
 
         for ($i=0; $i < 100; $i++) {
             $data[] = [
                 "content" => $faker->text(),
-                "id_user_User1" => $faker->numerify(),
-                "id_article_Article" => $faker->numerify(),
+                "id_user_User" => $faker->numerify(),
+                // "id_article_Article" => $faker->numerify(),
                 "date_post_comment" => date('Y-m-d H:i:s', $date),
                 "date_edit_comment" => date('Y-m-d H:i:s', $date),
             ];
         }
 
-        $this->table('comments')
+        $this->table('comment')
             ->insert($data)
             ->saveData();
     }

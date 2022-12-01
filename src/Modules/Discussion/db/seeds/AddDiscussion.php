@@ -24,16 +24,19 @@ class AddDiscussion extends AbstractSeed
         $date = $faker->unixTime('now');
         
 
-        for ($i=0; $i < 100; $i++) {
-            $data[] = [
-                "text_discussion" => $faker->text(),
-                "reply_to_discussion" => $faker->numerify(),
-                "id_user_User" => $faker->numerify(),
-                "id_comment_Categorie" => $faker->numerify(),
-                "date_post_discussion" => date('Y-m-d H:i:s', $date),
-                "date_edit_discussion" => date('Y-m-d H:i:s', $date),
-            ];
-        }
+        // for ($i=0; $i < 100; $i++) {
+        //     $data[] = [
+        //         "text_discussion" => $faker->text(),
+        //         "reply_to_discussion" => $faker->numerify(),
+        //         "id_user_User" => $faker->numerify(),
+        //         "id_comment_Categorie" => $faker->numerify(),
+        //         "date_post_discussion" => date('Y-m-d H:i:s', $date),
+        //         "date_edit_discussion" => date('Y-m-d H:i:s', $date),
+        //     ];
+        // }
+
+        // Le seeding contains des champs qui sont pas declare dans la migration
+        // ????
 
 
         /*CREATE TABLE public."Discussion" (
@@ -48,7 +51,7 @@ class AddDiscussion extends AbstractSeed
         );*/
 
         $this->table('discussions')
-            ->insert($data)
+            // ->insert($data)
             ->saveData();
     }
 }

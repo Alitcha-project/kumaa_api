@@ -10,14 +10,14 @@ use Aura\Router\RouterContainer;
  */
 class Router
 {
-    
+
     /**
      * router
      *
      * @var undefined
      */
     private $router = null;
-    
+
     /**
      * __construct
      *
@@ -76,7 +76,7 @@ class Router
         }
         return null;
     }
-    
+
     /**
      * generateUrl
      *

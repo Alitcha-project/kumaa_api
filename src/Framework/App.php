@@ -20,14 +20,14 @@ class App
      * @var array
      */
     private $modules = [];
-    
+
     /**
      * container
      *
      * @var undefined
      */
     private $container = null;
-    
+
     /**
      * __construct
      *
