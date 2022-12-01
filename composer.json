@@ -5,6 +5,7 @@
             "Kumaa\\Framework\\": "src/Framework/",
             "Kumaa\\Modules\\" : "src/Modules/",
             "Kumaa\\Database\\" : "src/Database/",
+            "Kumaa\\Action\\" : "src/Action",
             "Tests\\" : "tests/"
         }
     },

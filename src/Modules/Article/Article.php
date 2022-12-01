@@ -18,16 +18,23 @@ class Article extends Module
 
         $this->router->addRoute(
             "/article",
-            [$container->get(ArticleController::class), "getAllArticle"],
+            [$container->get(ArticleController::class), "action_get"],
             "getAllArticle",
             "GET"
         );
 
         $this->router->addRoute(
-            "/article/{slug}-{id}",
-            [$container->get(ArticleController::class), "getArticleByIdAndSlug"],
+            "/article/{id}",
+            [$container->get(ArticleController::class), "action_get"],
             "getOneArticle",
             "GET"
+        );
+
+        $this->router->addRoute(
+            "/article/{id}",
+            [$container->get(ArticleController::class), "action_delete"],
+            "deleteOneArticle",
+            "DELETE"
         );
     }
 }

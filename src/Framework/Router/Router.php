@@ -39,23 +39,25 @@ class Router
      */
     public function addRoute(string $path, callable $callback, string $name, string $methode): void
     {
-        switch ($methode) {
-            case 'GET':
-                # code...
-                break;
-            case 'POST':
-                # code...
-                break;
-            case 'PUT':
-                # code...
-                break;
-            default:
-                # code...
-                break;
-        }
         $map = $this->router->getMap();
 
-        $map->get($name, $path, $callback);
+        switch ($methode) {
+            case 'GET':
+                $map->get($name, $path, $callback);
+                break;
+            case 'POST':
+                $map->post($name, $path, $callback);
+                break;
+            case 'PUT':
+                $map->put($name, $path, $callback);
+                break;
+            case 'DELETE':
+                $map->delete($name, $path, $callback);
+                break;
+            default:
+                $map->get($name, $path, $callback);
+                break;
+        }
     }
 
     /**

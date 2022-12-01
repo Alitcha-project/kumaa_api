@@ -2,55 +2,41 @@
 
 namespace Tests\Module\Article;
 
+use DI\Container;
+use DI\ContainerBuilder;
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\ServerRequest;
-use Kumaa\Framework\Router\Router;
 use Kumaa\Modules\Article\ArticleController;
 use Kumaa\Modules\Article\ArticleModel;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Prophet;
+
+use function DI\get;
 
 class ArticleTest extends TestCase
 {
-    private $action;
+    /**
+     * article_controller
+     *
+     * @var ArticleController
+     */
+    public $article_controller;
 
-    // public function create_article(int $id, string $title)
-    // {
-    //     return [
-    //         "id" => $id,
-    //         "title_article" => $title
-    //     ];
-    // }
-
-    // public function setUp(): void
-    // {
-    //     $article = $this->create_article(9, "test-title");
-    //     $article_model = (new Prophet())->prophesize(ArticleModel::class);
-    //     $article_model->getArticle()->willReturn([]);
-    //     $article_model->getArticleById(9)->willReturn($article);
-    //     $router = (new Prophet())->prophesize(Router::class);
-    //     $this->action = new ArticleController($article_model->reveal(), $router->reveal());
-    // }
-
-    // public function testAllArticle()
-    // {
-    //     $response = $this->action->getAllArticle(new ServerRequest("GET", "/article/"));
-
-    //     $this->assertEquals(200, $response->getStatusCode());
-    //     $this->assertEquals(json_encode([]), $response->getBody());
-    // }
-
-    // public function testGetOneArtilce()
-    // {
-    //     $response = $this->action->getArticleByIdAndSlug(new ServerRequest("GET", "/article/test-title-9"));
-
-    //     $this->assertEquals(200, $response->getStatusCode());
-
-    //     $this->assertEquals(json_encode($this->create_article(9, "test-title")), (string)$response->getBody());
-
-    // }
-
-    public function testNothing()
+    public function setUp():void
     {
-        $this->assertEquals(1, 1);
+        $container = $this->createMock(Container::class);
+        $article = $this->createMock(ArticleModel::class);
+
+        $container->method('get')->willReturn($article);
+
+        $this->article_controller = new ArticleController($container);
+
+    }
+
+    public function testGetAllArticle()
+    {
+        $response = $this->article_controller->action_get(new ServerRequest(200, '/'));
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertEquals(200, $response->getStatusCode());
     }
 }

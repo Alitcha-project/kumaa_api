@@ -12,7 +12,7 @@ use function PHPUnit\Framework\isInstanceOf;
 class TableTest extends TestCase
 {
     private $table;
-    
+
     public function setUp():void
     {
         $pdo = new PDO('sqlite::memory:', null, null, [
@@ -26,7 +26,7 @@ class TableTest extends TestCase
         $property_table = $reflection->getProperty('table');
         $property_table->setAccessible(true);
         $property_table->setValue($this->table, 'test');
-    
+
         $this->table->getPdo()->exec('CREATE TABLE test(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             field VARCHAR(256)

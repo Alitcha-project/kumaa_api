@@ -14,6 +14,4 @@ return [
     ],
 
     PDO::class => \DI\factory(\Kumaa\Framework\Factory\PDOFactory::class),
-
-    // Router::class => \DI\factory(\Kumaa\Framework\Factory\RouterFactory::class)
 ];

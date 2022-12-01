@@ -2,8 +2,6 @@
 
 namespace Kumaa\Database;
 
-use PHPUnit\Framework\Constraint\ArrayHasKey;
-
 class Table
 {
 
@@ -76,7 +74,6 @@ class Table
         }, array_keys($fields)));
 
         $query = 'UPDATE ' . $this->table . ' SET ' . $sub_query . ' WHERE id = :id';
-
         $prepare = $this->pdo->prepare($query);
         if (key_exists('id', $fields)) {
             $fields['myid'] = $fields['id'];

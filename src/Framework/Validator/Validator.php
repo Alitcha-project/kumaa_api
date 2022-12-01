@@ -11,7 +11,7 @@ class Validator
 {
     private $params;
     private $errors = [];
-    
+
     public function __construct(array $params)
     {
         $this->params = $params;
