@@ -5,6 +5,7 @@ namespace Kumaa\Modules\Commentaire;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\ServerRequest;
 use Kumaa\Framework\Router\Router;
+use Kumaa\Modules\Article\Article;
 
 class CommentaireController
 {
@@ -15,7 +16,7 @@ class CommentaireController
 
     use RouterHelper;
 
-    public function __construct(CommentaireModel $commentaire, Router $router)
+    public function __construct(CommentaireModel $commentaire, Router $router, Article $article)
     {
         $this->article = $article;
         $this->commentaire = $commentaire;
